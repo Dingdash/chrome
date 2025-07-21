@@ -50,6 +50,9 @@ jobs:
 
             - name: 📝 Commit & push changes
               if: ${{ inputs.dry_run != 'true' }}
+              env:
+                  GITHUB_REPOSITORY: ${{ github.repository }}
+                  GITHUB_TOKEN: ${{ steps.auth.outputs.token }}
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
