@@ -241,17 +241,17 @@ function generateChangelog(version, groups) {
     changelog += '`' + date + '`';
     changelog += `\n\n`;
 
-    for (const [groupName, prs] of Object.entries(groups)) {
-        if (!prs.length) continue;
-        changelog += `### ${prependIcon[groupName]} ${groupName}\n`;
-        for (const pr of prs) {
-            changelog += `- ${pr.title} ([#${pr.number}](${pr.html_url}))\n`;
-            if (pr.body) {
-                changelog += `${formatBody(pr.body)}`;
-            }
+    for (const pr of prs) {
+        changelog += `- ${pr.title} ([#${pr.number}](${pr.html_url}))\n`;
+        if (pr.body) {
+            changelog += `${formatBody(pr.body)}`;
         }
-        changelog += '\n';
     }
+    // for (const [groupName, prs] of Object.entries(groups)) {
+    //     if (!prs.length) continue;
+    //     changelog += `### ${prependIcon[groupName]} ${groupName}\n`;
+    //     changelog += '\n';
+    // }
 
     return changelog;
 }

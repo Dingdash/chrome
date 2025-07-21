@@ -65,13 +65,13 @@ if (!REPO || !TOKEN) {
             `Current version: ${currentVersion}, bump: ${bump}, next version: ${nextVersion}`
         );
 
-        const groupedPRs = groupPRsByLabel(mergedPRs).groups;
-        const count = groupPRsByLabel(mergedPRs).groupedCount;
+        // const groupedPRs = groupPRsByLabel(mergedPRs).groups;
+        const count = mergedPRs.length;
         if (count === 0) {
             console.log(`✨ no update changelog Needed`);
             process.exit(0);
         }
-        const newChangelog = generateChangelog(nextVersion, groupedPRs);
+        const newChangelog = generateChangelog(nextVersion, mergedPRs);
         const previousChangelog = lastTag ? getChangelogFromTag(lastTag) : '';
 
         if (previousChangelog.includes(`## ${nextVersion}`)) {
