@@ -235,7 +235,7 @@ function groupPRsByLabel(prs) {
  * @param {Object} groups
  * @returns {string} markdown changelog
  */
-function generateChangelog(version, groups) {
+function generateChangelog(version, prs) {
     const date = new Date().toISOString().split('T')[0];
     let changelog = `## ${version}\n\n`;
     changelog += '`' + date + '`';
