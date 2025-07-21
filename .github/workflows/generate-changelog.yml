@@ -63,7 +63,7 @@ jobs:
                   node release.js
 
                   # Commit only if there are changes
-                  git add .  || echo "Nothing to add"
+                  git add . || echo "Nothing to add"
                   git diff --cached --quiet || (
                     git commit -m "chore: release version bump"
                     git push origin ${{ github.event.pull_request.head.ref }}
