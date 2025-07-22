@@ -1,0 +1,55 @@
+name: Push tags
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    types: [closed]
+    branches: ['main']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.APP_PRIVATE_KEY  }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📥 Install GitHub CLI
+        run: sudo apt-get install -y gh
+
+      - name: Pushing Tags
+        run: |
+          # Determine version
+          if [ -f package.json ]; then
+            VERSION=$(node -p "require('./package.json').version")
+          elif [ -f version.txt ]; then
+            VERSION=$(cat version.txt)
+          else
+            echo "❌ No version source found!"
+            exit 1
+          fi
+
+          echo "📦 Using version: $VERSION"
+
+          # Fetch latest remote tags
+          git fetch --tags
+
+          # Check if tag exists on remote
+          if git ls-remote --tags origin | grep -q "refs/tags/$VERSION"; then
+            echo "🔁 Tag $VERSION already exists on remote, skipping tag and release."
+            exit 0
+          fi
+
+          # Create tag and push
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY} $VERSION
