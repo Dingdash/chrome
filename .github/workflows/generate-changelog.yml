@@ -15,7 +15,6 @@ on:
 permissions:
     contents: write
 
-run-name: Generate Changelog
 jobs:
     generate-changelogs:
         runs-on: ubuntu-latest
