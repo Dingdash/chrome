@@ -1,3 +1,9 @@
+## 0.1.1
+
+`2025-07-22`
+
+- Move Script To Folder ([#9](https://github.com/Dingdash/test-repo/pull/9))
+    - move release.js and utils to folder cicd
 ## 0.1.0
 
 `2025-07-22`
