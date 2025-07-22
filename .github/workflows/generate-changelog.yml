@@ -15,6 +15,7 @@ on:
 permissions:
     contents: write
 
+run-name: Generate Changelog
 jobs:
     generate-changelogs:
         runs-on: ubuntu-latest
@@ -34,9 +35,9 @@ jobs:
             - name: 🚀 Run release script
               run: |
                   if [ "${{ inputs.dry_run }}" = "true" ]; then
-                    node release.js --dry-run
+                    node cicd/release.js --dry-run
                   else
-                    node release.js
+                    node cicd/release.js
                   fi
               env:
                   GITHUB_REPOSITORY: ${{ github.repository }}

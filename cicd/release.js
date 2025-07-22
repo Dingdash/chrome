@@ -5,7 +5,6 @@ const {
     updateVersion,
     fetchMergedPRs,
     getBumpType,
-    groupPRsByLabel,
     generateChangelog,
     getLastReleaseDateFromGit,
     getLastTag,
