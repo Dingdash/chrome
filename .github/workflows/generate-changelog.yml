@@ -58,7 +58,7 @@ jobs:
                   git pull origin ${{ github.event.pull_request.head.ref }}
 
                   # Run changelog script again just in case base changed
-                  node release.js
+                  node cicd/release.js
 
                   # Commit only if there are changes
                   git add . || echo "Nothing to add"
