@@ -1,3 +1,9 @@
+## 0.0.2
+
+`2025-07-22`
+
+- Trial release 0.0.2 ([#5](https://github.com/Dingdash/test-repo/pull/5))
+
 ## 0.0.1
 
 `2025-07-22`
