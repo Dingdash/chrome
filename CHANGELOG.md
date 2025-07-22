@@ -1,3 +1,9 @@
+## 0.1.0
+
+`2025-07-22`
+
+- Add Pattern Workflow On Push  Tags ([#7](https://github.com/Dingdash/test-repo/pull/7))
+
 ## 0.0.2
 
 `2025-07-22`
