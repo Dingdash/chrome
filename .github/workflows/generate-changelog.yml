@@ -20,15 +20,9 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Authenticate with GitHub App
-              id: auth
-              uses: actions/create-github-app-token@v2
-              with:
-                  app-id: ${{ secrets.APP_ID }}
-                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
             - uses: actions/checkout@v4
               with:
-                  token: ${{ steps.auth.outputs.token }}
+                  token: ${{ secrets.APP_PRIVATE_KEY }}
 
             - uses: actions/setup-node@v4
               with:
@@ -46,13 +40,13 @@ jobs:
                   fi
               env:
                   GITHUB_REPOSITORY: ${{ github.repository }}
-                  GITHUB_TOKEN: ${{ steps.auth.outputs.token }}
+                  GITHUB_TOKEN: ${{ secrets.APP_PRIVATE_KEY }}
 
             - name: 📝 Commit & push changes
               if: ${{ inputs.dry_run != 'true' }}
               env:
                   GITHUB_REPOSITORY: ${{ github.repository }}
-                  GITHUB_TOKEN: ${{ steps.auth.outputs.token }}
+                  GITHUB_TOKEN: ${{ secrets.APP_PRIVATE_KEY }}
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
