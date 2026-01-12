@@ -22,3 +22,10 @@ jobs:
             
             - name: Echo 
               run: echo Github deployed
+    notify-slack:
+        needs: deploy
+        runs-on: ubuntu-latest
+        if: always()
+        steps: 
+            - name: Run 
+              run: echo NOTIFY SLACK
