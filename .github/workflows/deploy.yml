@@ -25,7 +25,7 @@ jobs:
     notify-slack:
         needs: deploy
         runs-on: ubuntu-latest
-        if: always()
+        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'develop'
         steps: 
             - name: Run 
               run: echo NOTIFY SLACK
